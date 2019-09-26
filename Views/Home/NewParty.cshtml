@@ -1,0 +1,34 @@
+@model Party
+
+<div class="jumbotron">
+    <h1>Dojo Activity Center</h1>
+    <a href="/logout"><button class="btn btn-info">Logout</button></a>
+    <a href="/success"><button class="btn btn-info">Home</button></a>
+</div>
+<h2>Create New Activity</h2>
+
+<form action="/party" method="post">
+    <div class="form-group col-sm-6">
+        <label>Title:</label>
+        <span asp-validation-for="Title"></span>
+        <input type="text" name="Title" class="form-control" />
+    </div>
+    <div class="form-group col-sm-6">
+        <label>StartTime:</label>
+        <span asp-validation-for="StartTime"></span>
+        <input type="datetime-local" name="StartTime" class="form-control" />
+    </div>
+    <div class="form-group col-sm-6">
+        <label>Duration (minutes):</label>
+        <span asp-validation-for="Duration"></span>
+        <input type="number" name="Duration" class="form-control" />
+    </div>
+    <div class="form-group col-sm-6">
+        <label>Description:</label>
+        <span asp-validation-for="Description"></span>
+        <input type="text" name="Description" class="form-control" />
+    </div>
+    <div class="col-sm-12">
+        <input type="submit" class="btn btn-success" />
+    </div>
+</form>

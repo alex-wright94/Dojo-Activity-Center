@@ -1,0 +1,58 @@
+<div class="jumbotron">
+    <h1>Dojo Activity Center</h1>
+</div>
+
+<a href="/logout"><button class="btn btn-info">Logout</button></a>
+<br><br>
+
+
+<table class="table">
+    <tr>
+        <th>Activity</th>
+        <th>Date and Time</th>
+        <th>Duration(in minutes)</th>
+        <th>Event Coordinator</th>
+        <th>No. of Participants</th>
+        <th>Actions</th>
+    </tr>
+    @foreach(var p in ViewBag.Party)
+    {
+        <tr>
+            <td>
+                <a href="/view/@p.PartyId">@p.Title</a>
+            </td>
+            <td>@p.StartTime</td>
+            <td>@p.Duration</td>
+            <td>@p.Planner.FirstName</td>
+            <td>@p.AttendingUsers.Count</td>
+            <td>
+                @{
+                    if(@ViewBag.UserId == @p.PlannerId)
+                    {
+                        <a href="/delete/@p.PartyId">Delete</a>
+                    }
+                    else
+                    {
+                        bool joined = false;
+                        foreach(Join j in @p.AttendingUsers)
+                        {
+                            if(j.UserId == @ViewBag.UserId)
+                            {
+                                joined = true;
+                            }
+                        }
+                        if(joined)
+                        {
+                            <a href="/leave/@p.PartyId">Leave</a>
+                        }
+                        else
+                        {
+                            <a href="/join/@p.PartyId">Join</a>
+                        }
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Party/new"><button class="btn btn-primary">Add Activity</button></a>

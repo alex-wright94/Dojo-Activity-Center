@@ -1,0 +1,20 @@
+@model Party
+
+<div class="jumbotron">
+    <h1>@Model.Title</h1>
+    <a href="/logout"><button class="btn btn-info">Logout</button></a>
+    <a href="/success"><button class="btn btn-info">Home</button></a>
+</div>
+
+
+<p>Event Coordinator: @Model.Planner.FirstName</p>
+<p>Description: @Model.StartTime</p>
+
+<p>Participants</p>
+<ul>
+    <li>@Model.Planner.FirstName</li>
+    @foreach (Join j in Model.AttendingUsers)
+    {
+        <li>@j.Joiner.FirstName</li>   
+    }
+</ul>
